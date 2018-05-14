@@ -15,7 +15,7 @@ function setup() {
 
 	// add all of the bodies to the world
 	var ground = Matter.Bodies.rectangle(0, 480, 800, 100, { isStatic: true });
-	World.add(engine.world, [ground, person.lower_left_leg, person.lower_right_leg, person.upper_left_leg]);
+	World.add(engine.world, [ground, person.lower_left_leg, person.lower_right_leg, person.upper_left_leg, person.upper_right_leg]);
 	World.add(engine.world, person.joint_left)
 	World.add(engine.world, person.joint_right)
 	// run the engine

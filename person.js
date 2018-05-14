@@ -6,10 +6,10 @@ class Person {
     this.lower_right_leg = Matter.Bodies.rectangle(x, y + Ul, Ll, Lw);
     this.Ul = Ul;
     this.Ll = Ll;
+    this.Uw = Uw;
     this.Lw = Lw;
     this.x = x;
     this.y = y;
-    this.Uw = Uw;
   }
 
   init() {
@@ -17,6 +17,7 @@ class Person {
     let join_left = {
       bodyA: this.upper_left_leg,
       bodyB: this.lower_left_leg,
+      length: 50,
       stiffness: 0.4
     }
 
@@ -25,6 +26,7 @@ class Person {
     let join_right = {
       bodyA: this.upper_right_leg,
       bodyB: this.lower_right_leg,
+      length: 50,
       stiffness: 0.4
     }
 
@@ -34,5 +36,7 @@ class Person {
   show() {
     rect(this.upper_left_leg.position.x, this.upper_left_leg.position.y, this.Uw, this.Ul)
     rect(this.lower_left_leg.position.x, this.lower_left_leg.position.y, this.Lw, this.Ll)
+    rect(this.upper_right_leg.position.x, this.upper_right_leg.position.y, this.Uw, this.Ul)
+    rect(this.lower_right_leg.position.x, this.lower_right_leg.position.y, this.Lw, this.Ll)
   }
 }
