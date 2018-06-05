@@ -21,7 +21,8 @@ function setup() {
 	generation.species.forEach((creature) => { creature.add_to_world(world) });
 
 	// Boundary
-	boundary = new SimpleBoundary();
+	//boundary = new SimpleBoundary();
+	boundary = new SlopeBoundary();
 	boundary.add_to_world();
 
 	// Mouse Constraint
@@ -38,20 +39,20 @@ function setup() {
 	}, generationPeriod * 1000);
 
 	// Run the renderer
-	// let render = Render.create({
-	// 	element: document.body,
-	// 	engine: engine,
-	// 	options: {
-	// 		height, width
-	// 	}
-	// })
-	// Render.run(render);
+	let render = Render.create({
+		element: document.body,
+		engine: engine,
+		options: {
+			height, width
+		}
+	})
+	Render.run(render);
 
-	// let renderMouse = Matter.Mouse.create(render.canvas);
-	// renderMouse.pixelRatio = pixelDensity();
-	// Matter.World.add(world, Matter.MouseConstraint.create(engine, {
-	// 	mouse: renderMouse
-	// }));
+	let renderMouse = Matter.Mouse.create(render.canvas);
+	renderMouse.pixelRatio = pixelDensity();
+	Matter.World.add(world, Matter.MouseConstraint.create(engine, {
+		mouse: renderMouse
+	}));
 }
 
 let counter = 1;

@@ -1,10 +1,10 @@
-class SimpleBoundary {
+class SlopeBoundary {
 
     /**
      * @constructor
      */
     constructor() {
-        this.ground = Matter.Bodies.rectangle(width / 2, height, width, 50, {
+        this.ground = Matter.Bodies.polygon(width / 2 + 200, height, 3, 780, {
             isStatic: true,
             friction: 1,
             collisionFilter: {
@@ -46,7 +46,7 @@ class SimpleBoundary {
 
     display() {
         fill(color(228, 210, 190))
-        rect(this.ground.position.x, this.ground.position.y, width, 50);
+        triangle(this.ground.position.x -790, this.ground.position.y, width, height, width, 10);
         rect(this.left_wall.position.x, this.left_wall.position.y, 20, height);
         rect(this.right_wall.position.x, this.right_wall.position.y, 20, height);
         rect(this.roof.position.x, this.roof.position.y, width, 20);
