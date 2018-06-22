@@ -21,7 +21,7 @@ function setup() {
 	generation.species.forEach((creature) => { creature.add_to_world(world) });
 
 	// Boundary
-	//boundary = new SimpleBoundary();
+	// boundary = new SimpleBoundary();
 	boundary = new SlopeBoundary();
 	boundary.add_to_world();
 
@@ -34,7 +34,7 @@ function setup() {
 	// Restart Generation after 5 seconds
 	setInterval(() => {
 		generation.evolve();
-		console.log(generation.avg_score);
+		console.log(generation.avg_score);s
 		settled = false;
 	}, generationPeriod * 1000);
 
