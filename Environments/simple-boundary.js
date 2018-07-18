@@ -4,7 +4,7 @@ class SimpleBoundary {
      * @constructor
      */
     constructor() {
-        this.ground = Matter.Bodies.rectangle(width / 2, height, width, 50, {
+        this.ground = Matter.Bodies.rectangle(width / 2, height - 15, width, 50, {
             isStatic: true,
             friction: 1,
             collisionFilter: {
@@ -45,7 +45,7 @@ class SimpleBoundary {
     }
 
     display() {
-        fill(color(228, 210, 190))
+        fill(color(118, 240, 155))
         rect(this.ground.position.x, this.ground.position.y, width, 50);
         rect(this.left_wall.position.x, this.left_wall.position.y, 20, height);
         rect(this.right_wall.position.x, this.right_wall.position.y, 20, height);

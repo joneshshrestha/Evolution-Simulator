@@ -5,7 +5,7 @@ let creatures = []
 const Render = Matter.Render
 const engine = Matter.Engine.create();
 const world = engine.world;
-const generationPeriod = 20;
+const generationPeriod = 15;
 let generation = new Generation(25);
 let settled = false;
 
@@ -21,8 +21,7 @@ function setup() {
 	generation.species.forEach((creature) => { creature.add_to_world(world) });
 
 	// Boundary
-	// boundary = new SimpleBoundary();
-	boundary = new SlopeBoundary();
+	boundary = new SimpleBoundary();
 	boundary.add_to_world();
 
 	// Mouse Constraint
@@ -31,28 +30,60 @@ function setup() {
 	let m = Matter.MouseConstraint.create(engine, { mouse: canvasMouse });
 	Matter.World.add(world, m);
 
-	// Restart Generation after 5 seconds
+	// Restart Generation after certain seconds
 	setInterval(() => {
 		generation.evolve();
-		console.log(generation.avg_score);s
 		settled = false;
 	}, generationPeriod * 1000);
 
-	// Run the renderer
-	let render = Render.create({
-		element: document.body,
-		engine: engine,
-		options: {
-			height, width
-		}
-	})
-	Render.run(render);
+	/** Input fields & Button to save and load models */
+	const input_field = createElement('textarea');
+	const save_button = createButton('Save Model');
+	const load_button = createButton('Load Model');
+	const download_button = createButton('Download Model');
 
-	let renderMouse = Matter.Mouse.create(render.canvas);
-	renderMouse.pixelRatio = pixelDensity();
-	Matter.World.add(world, Matter.MouseConstraint.create(engine, {
-		mouse: renderMouse
-	}));
+	input_field.size(width, height * 0.25);
+	input_field.style('cols', '200');
+
+	save_button.mousePressed(() => {
+
+		// Get the best creature
+		let best_creature = generation.getBest();
+		
+		// Show its data in the textarea
+		let json_data = best_creature.brain.toJson();
+		input_field.value(json_data);
+	});
+
+	load_button.mousePressed(() => {
+		let data = input_field.value();
+		let json_data = JSON.parse(data);
+		generation.species.forEach((creature) => {
+			creature.brain.loadFromJson(json_data);
+		})
+	})
+
+	download_button.mousePressed(() => {
+		let best_creature = generation.getBest();
+		let json_data = best_creature.brain.toJson();
+		saveJSON(JSON.parse(json_data), 'best.json')
+	})
+
+	// Run the renderer
+	// let render = Render.create({
+	// 	element: document.body,
+	// 	engine: engine,
+	// 	options: {
+	// 		height, width
+	// 	}
+	// })
+	// Render.run(render);
+
+	// let renderMouse = Matter.Mouse.create(render.canvas);
+	// renderMouse.pixelRatio = pixelDensity();
+	// Matter.World.add(world, Matter.MouseConstraint.create(engine, {
+	// 	mouse: renderMouse
+	// }));
 }
 
 let counter = 1;
