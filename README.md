@@ -1,4 +1,4 @@
-# [DEMO](https://adityathebe.github.io/evolutionSimulator/)
+# [DEMO](https://joneshshrestha.github.io/evolutionSimulator/)
     
 # Evolution Simulator [Under Development]
 
