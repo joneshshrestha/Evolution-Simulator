@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +9,29 @@
 	<title>Evolution Simulator</title>
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="Docs/css/main.css">
+	<link rel="stylesheet" href="Assets/css/main.css">
+</head>
 
+<body>
+	<div id="nav">
+		<ul>
+			<li style="float:left" class="dropdown">
+				<a href="javascript:void(0)" class="dropbtn">Environments</a>
+				<div class="dropdown-content">
+					<a href="#" id="env-running">Running</a>
+					<a href="#" id="env-uphill">Climbing</a>
+				</div>
+			</li>
+			<li style="float:right" class="dropdown">
+				<a href="javascript:void(0)" class="dropbtn">Creatures</a>
+				<div class="dropdown-content">
+					<a href="#">Creature1</a>
+					<a href="#">Creature2</a>
+					<a href="#">Creature3</a>
+				</div>
+			</li>
+		</ul>
+	</div>
 	<!-- Libraries -->
 	<script src="lib/tf.js"></script>
 	<script src="lib/p5.js"></script>
@@ -25,30 +47,10 @@
 
 	<!-- Environments -->
 	<script src="Environments/simple-boundary.js"></script>
+	<script src="Environments/slope-boundary.js"></script>
 
 	<!-- Main Module -->
+	<script src="Assets/js/controller.js"></script>
 	<script src="sketch.js"></script>
-<body>
-	<div id="nav">
-	<ul>
-		<li style="float:left" class="dropdown">
-			<a href="javascript:void(0)" class="dropbtn">Environments</a>
-			<div class="dropdown-content">
-			<a href="#">Running</a>
-			<a href="#">Jumping</a>
-			<a href="#">Obstacle Jump</a>
-			<a href="#">Climbing</a>
-			</div>
-		</li>
-		<li style="float:right" class="dropdown">
-			<a href="javascript:void(0)" class="dropbtn">Creatures</a>
-			<div class="dropdown-content">
-			<a href="#">Creature1</a>
-			<a href="#">Creature2</a>
-			<a href="#">Creature3</a>
-			</div>
-		</li>
-	</ul>
-	</div>		
 </body>
 </html>

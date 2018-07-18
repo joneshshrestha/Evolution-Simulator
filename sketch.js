@@ -5,7 +5,7 @@ let creatures = []
 const Render = Matter.Render
 const engine = Matter.Engine.create();
 const world = engine.world;
-const generationPeriod = 15;
+let generationPeriod = 15;
 let generation = new Generation(25);
 let settled = false;
 
