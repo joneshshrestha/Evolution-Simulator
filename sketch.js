@@ -10,7 +10,7 @@ let generation = new Generation(25);
 let settled = false;
 
 function setup() {
-	let canvas = createCanvas(windowWidth * 0.95, windowHeight * 0.95);
+	let canvas = createCanvas(windowWidth * 0.80, windowHeight * 0.80);
 	frameRate(60);
 	rectMode(CENTER);
 	textSize(18)
