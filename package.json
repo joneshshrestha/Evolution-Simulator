@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/adityathebe/evolutionSimulator/issues"
   },
-  "homepage": "https://github.com/adityathebe/evolutionSimulator#readme"
+  "homepage": "https://github.com/adityathebe/evolutionSimulator#readme",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
 }

@@ -10,61 +10,63 @@
 
 	<!-- CSS -->
 	<link rel="stylesheet" href="Assets/css/main.css">
-	<link rel="stylesheet" href="Assets/css/w3.css">
+	<link rel="stylesheet" href="Assets/css/bootstrap.min.css">
 </head>
 
 <body>
 
-	<div class="w3-sidebar w3-bar-block w3-card w3-indigo" style="width:20%;right:0;">
-		<h3 class="w3-bar-item w3-panel w3-border-top w3-border-bottom w3-border-teal">Evolution Simulator</h3>
-
-		<div class="w3-row w3-section w3-right">
-			&nbsp Population
-			<div class="w3-right" style="width:40%; height:20%">
-				<input class="w3-input w3-border" type="text" placeholder="10 - 50">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-9" id="evolution-canvas">
+				<!-- Canvas -->
 			</div>
-		</div>
 
-		<div class="w3-row w3-section w3-right">
-			&nbsp Generation Period
-			<div class="w3-right" style="width:40%; height:20%">
-				<input class="w3-input w3-border" type="text" placeholder="10 - 30">
-			</div>
-		</div>
-
-		<div class="w3-row w3-section w3-right">
-			&nbsp Mutation Rate
-			<div class="w3-right" style="width:40%; height:20%">
-				<input class="w3-input w3-border" type="text" placeholder="0.01 - 0.1">
-			</div>
-		</div>
-
-		<div class="w3-row w3-section w3-right">
-			<div class="w3-right" style="width:100%; height:20%">
-				<div class="w3-dropdown-hover">
-					<button class="w3-button">Environments</button>
-					<div class="w3-dropdown-content w3-bar-block w3-border">
-					  <a href="#" id="env-running" class="w3-bar-item w3-button">Running</a>
-					  <a href="#" id="env-uphill" class="w3-bar-item w3-button">Climbing</a>
+			<div class="col-md-3">
+				<!-- Menu -->
+				<h3>Evolution Simulator</h3>
+				<hr>
+				<form>
+					<div class="form-group row">
+						<label class="col-md-6 control-label">Population</label>
+						<div class="col-md-6">
+							<input id = "form-population" type="text" class="form-control" placeholder="10 - 20">
+						</div>
 					</div>
-				  </div>		
-			</div>
-		</div>
-		
-		<div class="w3-row w3-section w3-right">
-			<div class="w3-right" style="width:114%; height:20%">
-				<div class="w3-dropdown-hover">
-					<button class="w3-button">Creatures</button>
-					<div class="w3-dropdown-content w3-bar-block w3-border">
-					  <a href="#" class="w3-bar-item w3-button">Creature1</a>
-					  <a href="#" class="w3-bar-item w3-button">Creature2</a>
+					<div class="form-group row">
+						<label class="col-md-6">Generation Time</label>
+						<div class="col-md-6">
+							<input type="text" id = "form_generation_period" class="form-control" placeholder="10 - 30">
+						</div>
 					</div>
-				  </div>
+					<div class="form-group row">
+						<label class="col-md-6">Mutation Rate</label>
+						<div class="col-md-6">
+							<input type="text" id = "form_mutation_rate" class="form-control" placeholder="0.01 - 0.5">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-6">Environment</label>
+						<div class="col-md-6">
+							<select class="form-control" id="env_selection">
+								<option>Simple</option>
+								<option>Uphill</option>
+							</select>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-success">Submit</button>
+				</form>
+				<hr>
+				<h3>Save and Load Models</h3>
+				<div id="model-area">
+					<textarea rows="6" class="form-control" id="model-input-field"></textarea>
+					<button id="save_button" class="btn btn-success">Save</button>
+					<button id="load_button" class="btn btn-success">Load</button>
+					<button id="download_button" class="btn btn-success">Download</button>
+				</div>
 			</div>
 		</div>
-
 	</div>
-			  
+
 	<!-- Libraries -->
 	<script src="lib/tf.js"></script>
 	<script src="lib/p5.js"></script>
@@ -86,4 +88,5 @@
 	<script src="Assets/js/controller.js"></script>
 	<script src="sketch.js"></script>
 </body>
+
 </html>

@@ -1,16 +1,20 @@
 let person;
 let boundary;
+let canvas;
 let creatures = []
 
 const Render = Matter.Render
 const engine = Matter.Engine.create();
 const world = engine.world;
 let generationPeriod = 15;
-let generation = new Generation(25);
+let population_size = 25;
+let mutation_rate = 0.5;
+let generation = new Generation(population_size);
 let settled = false;
 
 function setup() {
-	let canvas = createCanvas(windowWidth * 0.80, windowHeight * 0.80);
+	canvas = createCanvas(windowWidth * 0.73, windowHeight * 0.95);
+	canvas.parent("evolution-canvas");
 	frameRate(60);
 	rectMode(CENTER);
 	textSize(18)
@@ -37,33 +41,29 @@ function setup() {
 	}, generationPeriod * 1000);
 
 	/** Input fields & Button to save and load models */
-	const input_field = createElement('textarea');
-	const save_button = createButton('Save Model');
-	const load_button = createButton('Load Model');
-	const download_button = createButton('Download Model');
+	const input_field = document.getElementById('model-input-field');
+	const save_button = document.getElementById('save_button');
+	const load_button = document.getElementById('load_button');
+	const download_button = document.getElementById('download_button');
 
-	input_field.size(width, height * 0.25);
-	input_field.style('cols', '200');
-
-	save_button.mousePressed(() => {
-
+	save_button.addEventListener("click", () => {
 		// Get the best creature
 		let best_creature = generation.getBest();
-		
+
 		// Show its data in the textarea
 		let json_data = best_creature.brain.toJson();
-		input_field.value(json_data);
+		input_field.innerHTML = json_data
 	});
 
-	load_button.mousePressed(() => {
-		let data = input_field.value();
+	load_button.addEventListener("click", () => {
+		let data = input_field.value;
 		let json_data = JSON.parse(data);
 		generation.species.forEach((creature) => {
 			creature.brain.loadFromJson(json_data);
 		})
 	})
 
-	download_button.mousePressed(() => {
+	download_button.addEventListener("click", () => {
 		let best_creature = generation.getBest();
 		let json_data = best_creature.brain.toJson();
 		saveJSON(JSON.parse(json_data), 'best.json')
@@ -115,20 +115,20 @@ function draw() {
 	text("Average Score " + generation.avg_score.toFixed(2), 40, 90);
 	text("Population: " + generation.population, 40, 110);
 	text("Generation Period: " + generationPeriod + " seconds", 40, 130);
-	text("Mutation Rate: " + 5 + "%", 40, 150);
+	text("Mutation Rate: " + mutation_rate , 40, 150);
 	text("Progress: " + generation.progress.toFixed(2), 40, 170);
-	
+
 	// Display Inheritance
 	textSize(14);
 	fill('green');
-	text("Creature\tParentA\t\tParentB", width * 0.78, 40)
+	text("Creature\tParentA\t\tParentB", width * 0.73, 40)
 	generation.species.forEach((creature, index) => {
 		let txt = '';
 		if (creature.parents.length !== 0)
 			txt = `${creature.id} \t\t\t ${creature.parents[0].id} (${creature.parents[0].score.toFixed(0)}) \t\t\t ${creature.parents[1].id}(${creature.parents[1].score.toFixed(0)})`;
 		else
 			txt = `${creature.id} \t\t\t ------ \t\t\t ------`
-		text(txt, width * 0.80, 60 + (15 * index));
+		text(txt, width * 0.75, 60 + (15 * index));
 	})
 
 	// Run Matter-JS Engine
