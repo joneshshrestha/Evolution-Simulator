@@ -51,6 +51,15 @@ class Person {
 				mask: 0x0001,
 			}
 		});
+		this.upper_left_leg1 = Matter.Bodies.rectangle(params.x, params.y, params.upper_width, params.upper_length, {
+			friction: 0.8,
+			restitution: 0.1,
+			density: 0.05,
+			collisionFilter: {
+				category: 0x0002,
+				mask: 0x0001,
+			}
+		});
 
 		this.init();
 	}
@@ -62,8 +71,10 @@ class Person {
 		this.left_joint = Matter.Constraint.create({
 			bodyA: this.upper_left_leg,
 			bodyB: this.lower_left_leg,
+			bodyC: this.upper_left_leg1,
 			pointA: { x: 0, y: this.upper_length / 2 },
 			pointB: { x: 0, y: -this.upper_length / 2 },
+			pointC: { x: 0, y: -this.upper_length / 2 },
 			length: 0,
 			stiffness: 1,
 		});
@@ -80,8 +91,10 @@ class Person {
 		this.main_joint = Matter.Constraint.create({
 			bodyA: this.upper_left_leg,
 			bodyB: this.upper_right_leg,
+			bodyC: this.upper_left_leg1,
 			pointA: { x: 0, y: -this.upper_length / 2 },
 			pointB: { x: 0, y: -this.upper_length / 2 },
+			pointC: { x: 0, y: -this.upper_length / 2 },
 			length: 0,
 			stiffness: 1,
 		});
@@ -90,6 +103,7 @@ class Person {
 		this.main_muscle = Matter.Constraint.create({
 			bodyA: this.upper_left_leg,
 			bodyB: this.upper_right_leg,
+			bodyC: this.upper_left_leg1,
 			length: (this.upper_length / 2),
 			stiffness: 1,
 		});
@@ -97,6 +111,7 @@ class Person {
 		this.left_muscle = Matter.Constraint.create({
 			bodyA: this.upper_left_leg,
 			bodyB: this.lower_left_leg,
+			bodyC: this.upper_left_leg1,
 			length: (this.upper_length / 3) + (this.lower_length / 3),
 			stiffness: 1
 		});
@@ -110,7 +125,7 @@ class Person {
 	}
 
 	add_to_world(world) {
-		Matter.World.add(world, [this.upper_right_leg, this.upper_left_leg, this.lower_left_leg, this.lower_right_leg]);
+		Matter.World.add(world, [this.upper_right_leg, this.upper_left_leg, this.lower_left_leg, this.lower_right_leg, this.upper_left_leg1]);
 		Matter.World.add(world, [this.left_joint, this.right_joint, this.main_joint]);
 		Matter.World.add(world, [this.main_muscle, this.left_muscle, this.right_muscle]);
 	}
@@ -143,6 +158,14 @@ class Person {
 			vertex(this.lower_right_leg.vertices[i].x, this.lower_right_leg.vertices[i].y);
 		}
 		endShape();
+
+		fill(this.colors[0])
+		beginShape();
+		for (let i = 0; i < 4; i++) {
+			vertex(this.upper_left_leg1.vertices[i].x, this.upper_left_leg1.vertices[i].y);
+		}
+		endShape();
+
 	}
 
 	// Movements
@@ -202,7 +225,7 @@ class Person {
 	}
 
 	kill(world) {
-		Matter.World.remove(world, [this.upper_right_leg, this.upper_left_leg, this.lower_left_leg, this.lower_right_leg,
+		Matter.World.remove(world, [this.upper_right_leg, this.upper_left_leg, this.lower_left_leg, this.lower_right_leg, this.upper_left_leg1,
 		this.left_joint, this.right_joint, this.main_joint, this.main_muscle, this.left_muscle, this.right_muscle]);
 
 		// Dispose its brain
