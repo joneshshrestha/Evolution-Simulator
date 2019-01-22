@@ -1,0 +1,43 @@
+* {
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+}
+
+table,
+td,
+th {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+}
+
+.row {
+  flex: 1;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: 'column';
+}
+
+#mainCanvas {
+  flex: 0 0 60%;
+}
+
+#humanstats {
+  flex: 1;
+  margin-top: 10px;
+  margin-right: 400px;
+  margin-left: 100px;
+}
+#controllers {
+  flex: 1;
+  font-family: monospace;
+  padding-left: 50px;
+}
+#chart {
+  margin-bottom: 5px;
+}

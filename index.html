@@ -2,91 +2,62 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>Evolution Simulator</title>
-
-	<!-- CSS -->
-	<link rel="stylesheet" href="Assets/css/main.css">
-	<link rel="stylesheet" href="Assets/css/bootstrap.min.css">
-</head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evolution Simulator</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 <body>
 
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-9" id="evolution-canvas">
-				<!-- Canvas -->
-			</div>
+  <div id="wrapper">
 
-			<div class="col-md-3">
-				<!-- Menu -->
-				<h3>Evolution Simulator</h3>
-				<hr>
-				<form>
-					<div class="form-group row">
-						<label class="col-md-6 control-label">Population</label>
-						<div class="col-md-6">
-							<input id = "form-population" type="text" class="form-control" placeholder="10 - 20">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-6">Generation Time</label>
-						<div class="col-md-6">
-							<input type="text" id = "form_generation_period" class="form-control" placeholder="10 - 30">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-6">Mutation Rate</label>
-						<div class="col-md-6">
-							<input type="text" id = "form_mutation_rate" class="form-control" placeholder="0.01 - 0.5">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-6">Environment</label>
-						<div class="col-md-6">
-							<select class="form-control" id="env_selection">
-								<option>Simple</option>
-								<option>Uphill</option>
-							</select>
-						</div>
-					</div>
-					<button type="submit" class="btn btn-success">Submit</button>
-				</form>
-				<hr>
-				<h3>Save and Load Models</h3>
-				<div id="model-area">
-					<textarea rows="6" class="form-control" id="model-input-field"></textarea>
-					<button id="save_button" class="btn btn-success">Save</button>
-					<button id="load_button" class="btn btn-success">Load</button>
-					<button id="download_button" class="btn btn-success">Download</button>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class='row'>
+      <div id="mainCanvas"></div>
 
-	<!-- Libraries -->
-	<script src="lib/tf.js"></script>
-	<script src="lib/p5.js"></script>
-	<script src="lib/p5.dom.min.js"></script>
-	<script src="lib/matter.js"></script>
+      <div id="simulationConfigs"></div>
+      <div id="bestHumanConfigs"></div>
+      <div class='row' id="controllers">
 
-	<!-- NeuroEvolution -->
-	<script src="NeuroEvolution/nn.js"></script>
-	<script src="NeuroEvolution/ga.js"></script>
+          <span>
+            <p style="display: inline;"><strong>Simulation Speed</p>
+            <input id="simulationSlider" style="display: inline;" type="range" value="1" min="0" max="5" step="1">
+          </span>
+          <br />
+          <br />
+    
+          <button onclick="UIController.downloadBestGenome()">Download Best Genome</button>
+          <br />
+          <br />
+          <button onclick="UIController.uploadCustomGenome()">Upload Genome</button>
+          <br />
+          <br />
+          <textarea id="userGenomeInput" placeholder="Upload Genome"></textarea>
+        </div>
+    
+    </div> <!-- First Row -->
 
-	<!-- Creature Models -->
-	<script src="Models/person.js"></script>
+    <canvas id="chart"></canvas>
 
-	<!-- Environments -->
-	<script src="Environments/simple-boundary.js"></script>
-	<script src="Environments/slope-boundary.js"></script>
+    <div id="stats">
+      <table id="humanstats"></table>
+    </div>
+     <!-- Second Row -->
+    
+  </div> <!-- Wrapper -->
 
-	<!-- Main Module -->
-	<script src="Assets/js/controller.js"></script>
-	<script src="sketch.js"></script>
+  <!-- Libraries -->
+  <script src="lib/chart.js"></script>
+  <script src="lib/p5.js"></script>
+  <script src="lib/p5.dom.min.js"></script>
+  <script src="lib/box2d-min.js"></script>
+
+  <script src="src/ga.js"></script>
+  <script src="src/ui.js"></script>
+  <script src="src/floor.js"></script>
+  <script src="src/human.js"></script>
+  <script src="src/sketch.js"></script>
 </body>
 
 </html>

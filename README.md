@@ -1,4 +1,8 @@
-# [DEMO](https://joneshshrestha.github.io/Evolution-Simulator/)
+## Demo
+
+1. [DEMO](https://adityathebe.github.io/evolutionSimulator/)
+2. [Model - Bipedal](https://adityathebe.github.io/evolutionSimulator/Demo/Bipedal)
+2. [Model - Person](https://adityathebe.github.io/evolutionSimulator/Demo/Person)
     
 # Evolution Simulator [Under Development]
 
@@ -82,3 +86,5 @@ The first creature design successfully found a way to get to the right side of t
 ![](https://imgur.com/Khb27YD.gif)
 
 This led to another problem. The creatures focused more on balancing than on walking.
+
+In addition to that, the fitness is calculated only at the end of generation which doesn't reward the learning process but just the final state. Due to this limitation, the creature will never evolve to jump and also optimize its "walking" strategy.
