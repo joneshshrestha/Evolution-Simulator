@@ -24,16 +24,13 @@
             <p style="display: inline;"><strong>Simulation Speed</p>
             <input id="simulationSlider" style="display: inline;" type="range" value="1" min="0" max="5" step="1">
           </span>
+          <textarea id="userGenomeInput" placeholder="Upload Genome" cols="50" rows="2"></textarea>
           <br />
           <br />
     
-          <button onclick="UIController.downloadBestGenome()">Download Best Genome</button>
-          <br />
-          <br />
-          <button onclick="UIController.uploadCustomGenome()">Upload Genome</button>
-          <br />
-          <br />
-          <textarea id="userGenomeInput" placeholder="Upload Genome"></textarea>
+          <button class="button1" onclick="UIController.downloadBestGenome()">Download Best Genome</button>
+          <button class="button2" onclick="UIController.uploadCustomGenome()">Upload Genome</button>
+
         </div>
     
     </div> <!-- First Row -->

@@ -41,3 +41,27 @@ table {
 #chart {
   margin-bottom: 5px;
 }
+
+div.row button {
+  padding: 2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 0px 15px;
+  cursor: pointer;
+}
+
+div.row .button1 {
+  background-color: rgb(81, 180, 81);
+  margin: 0px 260px;
+}
+
+div.row .button2 {
+  background-color: rgb(93, 142, 206); 
+  margin: 0px -140px;
+}
+
+div.row textarea {
+  margin: -5px 12.5px;
+}

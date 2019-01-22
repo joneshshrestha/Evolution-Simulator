@@ -47,7 +47,7 @@ class UIController {
     document.getElementById("bestHumanConfigs").innerHTML = "";
     const para = document.createElement("p");
     const bestScore = document.createTextNode('Best Score : ' + globals.bestHuman.score.toFixed(2));
-    const mostStepsMade = document.createTextNode('Most Steps : ' + globals.bestHuman.stepsMade);
+    const mostStepsMade = document.createTextNode(' Most Steps : ' + globals.bestHuman.stepsMade);
     para.appendChild(bestScore);
     para.appendChild(mostStepsMade);
     document.getElementById("bestHumanConfigs").appendChild(para);
